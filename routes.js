@@ -11,8 +11,11 @@ const SEARCH = "/search";
 //USERS STUFF
 const USERS = "/users";
 const USER_DETAIL = "/:id"; // :id는 가변형 데이터로써 무엇이든 들어갈 수 있다는 의미입니다. ex) /users/1
-const EDIT_PROFILE = "/edit-profile";
-const CHANGE_PASSWORD = "/change-password";
+const EDIT_PROFILE = "/editProfile";
+const CHANGE_PASSWORD = "/changePassword";
+
+const REF_EDIT_PROFILE = "/users/editProfile";
+const REF_CHANGE_PASSWORD = "/users/changePassword";
 
 //Videos
 const VIDEOS = "/videos";
@@ -28,14 +31,28 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  userDetail: USER_DETAIL,
+  userDetail: (id) => {
+    if (id) {
+      return `/users/${id}`;
+    } else {
+      return USER_DETAIL;
+    }
+  },
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
+  videoDetail: (id) => {
+    if (id) {
+      return `/videos/${id}`;
+    } else {
+      return VIDEO_DETAIL;
+    }
+  },
   editVideo: EDIT_VIDEO,
   deleteVideo: DELETE_VIDEO,
+  refEditProfile: REF_EDIT_PROFILE,
+  refChangePassword: REF_CHANGE_PASSWORD,
 };
 
 export default routes;
